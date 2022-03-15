@@ -1,0 +1,105 @@
+What is an Event?
+
+When you refresh your email inbox, double tap on a post, or scroll through a 
+newsfeed — something cool happens in your browser. These actions are known 
+as events!
+
+Events on the web are user interactions and browser manipulations that you 
+can program to trigger functionality. Some other examples of events are:
+
+    A mouse clicking on a button
+    Webpage files loading in the browser
+    A user swiping right on an image
+
+When a user does any of the above actions, they’re causing the event to be 
+fired or be triggered. As in, “a click event fired when the button was 
+clicked”. Being able to respond to these events makes your website 
+interactive and therefore dynamic.
+
+"Firing" Events
+
+After a specific event fires on a specific element in the document object 
+model (or DOM), an event handler function can be created to run as a 
+response. In this lesson, we will learn about event handler functions that 
+modify and update DOM elements after an event fires.
+
+Let’s compare the firing of events to something more familiar: a dog trained 
+to eat when they hear the sound of a bell! (This is known as the Pavlovian 
+conditioning.)
+
+As you can see in the diagram, the ringing of the bell is analogous to a 
+JavaScript event firing. The dog is trained to anticipate the ringing of 
+the bell and this action is analogous to creating an event listener. After 
+the dog hears the bell, it’ll come over and eat its food! This response is 
+like an event handler function that executes code which, in a website, 
+could change an element’s color, text, and much more!”
+
+Most events in the browser take place without being noticed — the events 
+are undetected because there is no event handler associated with the event 
+to execute an action. Event handlers are crucial for creating interactive 
+websites with JavaScript.
+
+Adding Event Handlers
+
+We looked at registering event handlers using the .addEventListener() 
+method, but there is also another way!
+
+Event Handlers can also be registered by setting an .onevent property 
+on a DOM element (event target). The pattern for registering a specific 
+event is to append an element with .on followed by the lowercased event 
+type name. For instance, if we want to register a click event with this 
+pattern, we would write:
+
+eventTarget.onclick = eventHandlerFunction;
+
+Here, we give the DOM element eventTarget the .onclick property and set 
+its value as the event handler function eventHandlerFunction.
+
+It’s important to know that this .onevent property and .addEventListener() 
+will both register event listeners. With .onevent, it allows for one event 
+handler function to be attached to the event target. 
+
+Removing Event Handlers
+
+The .removeEventListener() method is used to reverse the .addEventListener() 
+method. This method stops the event target from “listening” for an event to 
+fire when it no longer needs to. .removeEventListener() also takes two arguments:
+
+    The event type as a string
+    The event handler function
+
+Check out the syntax of a .removeEventListener() method with a click event:
+
+eventTarget.removeEventListener('click', eventHandlerFunction);
+
+Because there can be multiple event handler functions associated with a 
+particular event, .removeEventListener() needs both the exact event type name 
+and the name of the event handler you want to remove. If .addEventListener() 
+was provided an anonymous function, then that event listener cannot be removed.
+
+Event Object Properties
+
+JavaScript stores events as Event objects with their related data and 
+functionalities as properties and methods. When an event is triggered, the 
+event object can be passed as an argument to the event handler function.
+
+function eventHandlerFunction(event){
+   console.log(event.timeStamp);
+}
+ 
+eventTarget.addEventListener('click', eventHandlerFunction);
+
+In the example above, when the 'click' event is triggered on the eventTarget, 
+the eventHandlerFunction receives event, the Event object, which has 
+information related to the 'click' event. Then, we log the time it took for 
+the event to be triggered since the document was loaded by accessing the 
+.timeStamp property of the event object.
+
+There are pre-determined properties associated with event objects. You can 
+call these properties to see information about the event, for example:
+
+    the .target property to reference the element that the event is registered to.
+    the .type property to access the name of the event.
+    the .timeStamp property to access the number of milliseconds that passed 
+since the document loaded and the event was triggered.
+
